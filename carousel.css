@@ -1,0 +1,808 @@
+@media screen and (max-width: 499px) {
+
+  .carouselIMG {
+    width: 200px;
+    height: 200px;
+    border: 4px solid rgb(255, 255, 255);
+    border-radius: 100%;
+  }
+
+  .boxWrapC {
+    width: 100%;
+    margin-top: 80px;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px -10px rgb(96, 37, 163);
+    }
+
+    to {
+      box-shadow: 0 0 10px 10px rgba(104, 27, 128, 0.233);
+    }
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-250px * 8));
+    }
+  }
+
+  @keyframes scroll2 {
+    0% {
+      transform: translateX(-1500px);
+    }
+
+    100% {
+      transform: translateX(calc(0 * 16));
+    }
+  }
+
+  @keyframes scroll3 {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-90px * 7));
+    }
+  }
+
+  .slider {
+    height: 280px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .slider2 {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-top: -5%;
+  }
+
+  .slider::before,
+  .slider::after {
+    content: "";
+    height: 500px;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+  }
+
+  .slider::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+  }
+
+  .slider::before {
+    left: 0;
+    top: 0;
+  }
+
+  .slider .slide-track2 {
+    animation: scroll2 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider2 .slide-track2 {
+    animation: scroll2 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider .slide-track3 {
+    animation: scroll3 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider2 .slide-track3 {
+    animation: scroll3 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+
+  .slider .slide {
+    height: 250px;
+    width: 435px;
+  }
+
+  .slider2 .slide {
+    height: 250px;
+    width: 435px;
+  }
+
+  .welcome {
+    font-size: 45px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding: 50px;
+    color: white;
+    background-color: rgb(22, 22, 22);
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 767px) {
+
+  .carouselIMG {
+    width: 200px;
+    height: 200px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 4px solid rgb(255, 255, 255);
+    border-radius: 100%;
+  }
+
+  .boxWrapC {
+    width: 100%;
+    margin-top: 80px;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px -10px rgb(96, 37, 163);
+    }
+
+    to {
+      box-shadow: 0 0 10px 10px rgba(104, 27, 128, 0.233);
+    }
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-250px * 8));
+    }
+  }
+
+  @keyframes scroll2 {
+    0% {
+      transform: translateX(-1500px);
+    }
+
+    100% {
+      transform: translateX(calc(0 * 16));
+    }
+  }
+
+  @keyframes scroll3 {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-90px * 7));
+    }
+  }
+
+  .slider {
+    height: 280px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .slider2 {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-top: -5%;
+  }
+
+  .slider::before,
+  .slider::after {
+    content: "";
+    height: 500px;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+  }
+
+  .slider::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+  }
+
+  .slider::before {
+    left: 0;
+    top: 0;
+  }
+
+  .slider .slide-track2 {
+    animation: scroll2 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider2 .slide-track2 {
+    animation: scroll2 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider .slide-track3 {
+    animation: scroll3 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider2 .slide-track3 {
+    animation: scroll3 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+
+  .slider .slide {
+    height: 250px;
+    width: 435px;
+  }
+
+  .slider2 .slide {
+    height: 250px;
+    width: 435px;
+  }
+
+  .welcome {
+    font-size: 45px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding: 50px;
+    color: white;
+    background-color: rgb(22, 22, 22);
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+
+  .carouselIMG {
+    width: 280px;
+    height: 280px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 4px solid rgb(255, 255, 255);
+    border-radius: 100%;
+  }
+
+  .boxWrapC {
+    width: 100%;
+    margin-top: 80px;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px -10px rgb(96, 37, 163);
+    }
+
+    to {
+      box-shadow: 0 0 10px 10px rgba(104, 27, 128, 0.233);
+    }
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-250px * 8));
+    }
+  }
+
+  @keyframes scroll2 {
+    0% {
+      transform: translateX(-1500px);
+    }
+
+    100% {
+      transform: translateX(calc(0 * 16));
+    }
+  }
+
+  @keyframes scroll3 {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-90px * 7));
+    }
+  }
+
+  .slider {
+    height: 360px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .slider2 {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-top: -5%;
+  }
+
+  .slider::before,
+  .slider::after {
+    content: "";
+    height: 500px;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+  }
+
+  .slider::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+  }
+
+  .slider::before {
+    left: 0;
+    top: 0;
+  }
+
+  .slider .slide-track2 {
+    animation: scroll2 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider2 .slide-track2 {
+    animation: scroll2 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider .slide-track3 {
+    animation: scroll3 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider2 .slide-track3 {
+    animation: scroll3 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+
+  .slider .slide {
+    height: 250px;
+    width: 435px;
+  }
+
+  .slider2 .slide {
+    height: 250px;
+    width: 435px;
+  }
+
+  .welcome {
+    font-size: 45px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding: 50px;
+    color: white;
+    background-color: rgb(22, 22, 22);
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+
+  .carouselIMG {
+    width: 280px;
+    height: 280px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 4px solid rgb(255, 255, 255);
+    border-radius: 100%;
+  }
+
+  .boxWrapC {
+    width: 100%;
+    margin-top: 80px;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px -10px rgb(96, 37, 163);
+    }
+
+    to {
+      box-shadow: 0 0 10px 10px rgba(104, 27, 128, 0.233);
+    }
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-250px * 8));
+    }
+  }
+
+  @keyframes scroll2 {
+    0% {
+      transform: translateX(-1500px);
+    }
+
+    100% {
+      transform: translateX(calc(0 * 16));
+    }
+  }
+
+  @keyframes scroll3 {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-90px * 7));
+    }
+  }
+
+  .slider {
+    height: 400px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .slider2 {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-top: -5%;
+  }
+
+  .slider::before,
+  .slider::after {
+    content: "";
+    height: 500px;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+  }
+
+  .slider::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+  }
+
+  .slider::before {
+    left: 0;
+    top: 0;
+  }
+
+  .slider .slide-track2 {
+    animation: scroll2 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider2 .slide-track2 {
+    animation: scroll2 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider .slide-track3 {
+    animation: scroll3 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider2 .slide-track3 {
+    animation: scroll3 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+
+  .slider .slide {
+    height: 250px;
+    width: 435px;
+  }
+
+  .slider2 .slide {
+    height: 250px;
+    width: 435px;
+  }
+
+  .welcome {
+    font-size: 45px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding: 50px;
+    color: white;
+    background-color: rgb(22, 22, 22);
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1919px) {
+
+  .carouselIMG {
+    width: 320px;
+    height: 320px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 4px solid rgb(255, 255, 255);
+    border-radius: 100%;
+    z-index: 1;
+  }
+
+  .boxWrapC {
+    width: 100%;
+    margin-top: 80px;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px -10px rgb(96, 37, 163);
+    }
+
+    to {
+      box-shadow: 0 0 10px 10px rgba(104, 27, 128, 0.233);
+    }
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-250px * 8));
+    }
+  }
+
+  @keyframes scroll2 {
+    0% {
+      transform: translateX(-1500px);
+    }
+
+    100% {
+      transform: translateX(calc(0 * 16));
+    }
+  }
+
+  @keyframes scroll3 {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-90px * 7));
+    }
+  }
+
+  .slider {
+    height: 400px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .slider2 {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-top: -5%;
+  }
+
+  .slider::before,
+  .slider::after {
+    content: "";
+    height: 500px;
+    position: absolute;
+    width: 200px;
+   }
+
+  .slider::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+  }
+
+  .slider::before {
+    left: 0;
+    top: 0;
+  }
+
+  .slider .slide-track2 {
+    animation: scroll2 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider2 .slide-track2 {
+    animation: scroll2 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider .slide-track3 {
+    animation: scroll3 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider2 .slide-track3 {
+    animation: scroll3 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+
+  .slider .slide {
+    height: 250px;
+    width: 435px;
+  }
+
+  .slider2 .slide {
+    height: 250px;
+    width: 435px;
+  }
+
+  .welcome {
+    font-size: 45px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding: 50px;
+    color: white;
+    background-color: rgb(22, 22, 22);
+  }
+}
+
+@media screen and (min-width: 1920px) {
+
+  .carouselIMG {
+    width: 400px;
+    height: 400px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 8px solid rgb(255, 255, 255);
+    border-radius: 100%;
+  }
+
+  .boxWrapC {
+    width: 100%;
+    margin-top: 10%;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px -10px rgb(96, 37, 163);
+    }
+
+    to {
+      box-shadow: 0 0 10px 10px rgba(104, 27, 128, 0.233);
+    }
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-250px * 8));
+    }
+  }
+
+  @keyframes scroll2 {
+    0% {
+      transform: translateX(-1500px);
+    }
+
+    100% {
+      transform: translateX(calc(0 * 16));
+    }
+  }
+
+  @keyframes scroll3 {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-90px * 7));
+    }
+  }
+
+  .slider {
+    height: 500px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .slider2 {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-top: -5%;
+  }
+
+  .slider::before,
+  .slider::after {
+    content: "";
+    height: 500px;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+  }
+
+  .slider::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+  }
+
+  .slider::before {
+    left: 0;
+    top: 0;
+  }
+
+  .slider .slide-track2 {
+    animation: scroll2 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider2 .slide-track2 {
+    animation: scroll2 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider .slide-track3 {
+    animation: scroll3 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+  .slider2 .slide-track3 {
+    animation: scroll3 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+  }
+
+
+  .slider .slide {
+    height: 250px;
+    width: 435px;
+  }
+
+  .slider2 .slide {
+    height: 250px;
+    width: 435px;
+  }
+
+  .welcome {
+    font-size: 45px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding: 50px;
+    color: white;
+    background-color: rgb(22, 22, 22);
+  }
+}
+
