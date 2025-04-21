@@ -1,0 +1,146 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Apply Quicksand font globally */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500; /* Adjust as needed (300-700) */
+}
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background-color: white;
+  font-family: 'Quicksand', sans-serif;
+}
+
+a{
+  color: rgb(40, 107, 250);
+}
+
+#response{
+  color: black;
+  font-weight: bold;
+}
+/* Main container */
+.main-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Title styling */
+.main-title {
+  line-height: 1.2;
+  color: black;
+  margin-bottom: 1.5rem;
+}
+
+/* Title line breaks */
+.title-line {
+  display: block;
+  font-size: 35px;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto 1rem;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* Mint details */
+.mint-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Mint info row */
+.mint-info {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  font-size: 1.125rem;
+}
+
+/* Mint button */
+.mint-button {
+  background: black;
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
+  width: 200px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.mint-button:hover {
+  transform: scale(1.05);
+}
+
+#txtColor{
+  color: black;
+}
+
+#navBg{
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+#otherBtns{
+  background-color: rgb(0, 0, 22);
+  color: white;
+  font-size: 25px;
+  width: 450px;
+  margin: 15px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  display: none;
+}
+
+#walletCenter{
+  margin-left: -30px;
+}
+
+
+@media screen and (max-width: 499px) {
+  .title-line {
+    display: block;
+    font-size: 25px;
+  }
+
+  #walletCenter{
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+}
+
+@media screen and (min-width: 500px) and (max-width: 767px) {
+  .title-line {
+    display: block;
+    font-size: 25px;
+  }
+
+  #walletCenter{
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+}
