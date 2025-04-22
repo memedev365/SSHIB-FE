@@ -469,7 +469,7 @@ export const TreeBubble: FC = () => {
                 )}
             </div>
 
-            <div>
+            {/*<div>
                 <div>
                     <button
                         onClick={createMerkleTree}
@@ -508,7 +508,7 @@ export const TreeBubble: FC = () => {
                 <div id="response">
                     {_response3 && <>Collection NFT Minted</>}
                 </div>
-            </div>
+            </div>*/}
 
             <style jsx>{`
                 .mint-details {
