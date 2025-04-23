@@ -9,5 +9,5 @@ export const LAMPORTS_PER_SOL = 1000000000;
 export const perNFTPrice = 0; // Price in SOL per NFT
 
 // Contract addresses
-export const tokenAddress = '8Xg64LeT1HYZNbv9PMLf8hbUvULwm9pNDfKk1oofePtu';
-export const merkleTreeAddress = 'CMLK4GDt1v74tDDtt9zzpwfvb17ESMQqMUMp3fKsjDAF';
+export const tokenAddress = '7vKvXrygLD5TJyRL7mRdnvxTn1JRffBdsK2WQRZ7sW7q';
+export const merkleTreeAddress = 'H99DUuDQpNSiX38LF6n7cdJaSLzyfNofHf9Jo8JfyLNS';
