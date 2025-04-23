@@ -1,7 +1,7 @@
 // src/config/constants.ts
 
 // Admin wallet address for airdrop authorization
-export const ADMIN_WALLET_ADDRESS = '7eLQnG9QoqdqtPbpXxQ3kSJXTTjWdGXK8SeVeHR7HnsM'; // Replace with your actual admin wallet address
+export const ADMIN_WALLET_ADDRESS = '79Vhyb7rLSgobJbKB4NuRcUarriuxxzaWRNZuWxwCtU7'; // Replace with your actual admin wallet address
 
 // NFT collection constants
 export const MAX_SUPPLY = 10000;
