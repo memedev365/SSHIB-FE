@@ -493,47 +493,6 @@ export const TreeBubble: FC = () => {
                 )}
             </div>
 
-            {/*<div>
-                <div>
-                    <button
-                        onClick={createMerkleTree}
-                        id="otherBtns"
-                        disabled={disableCreateMerkle}
-                    >
-                        {disableCreateMerkle ? 'Creating MerkleTree...' : 'Create MerkleTree'}
-                    </button>
-                    <div id="response">{_response}</div>
-                </div>
-
-                <div>
-                    <button
-                        onClick={createCollection}
-                        id="otherBtns"
-                        disabled={disableCreateCollection}
-                    >
-                        {disableCreateCollection ? 'Creating Collection...' : 'Create Collection'}
-                    </button>
-                    <div id="coloumn">
-                        <div id="response">
-                            {_response2}
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <button
-                        onClick={mintToCollection}
-                        id="otherBtns"
-                        disabled={disableMintToCollection}
-                    >
-                        {disableMintToCollection ? 'Minting...' : 'Mint To Collection'}
-                    </button>
-                </div>
-                <div id="response">
-                    {_response3 && <>Collection NFT Minted</>}
-                </div>
-            </div>*/}
-
             <style jsx>{`
                 .mint-details {
                     max-width: 400px;
