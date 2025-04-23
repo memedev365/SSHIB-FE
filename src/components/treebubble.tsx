@@ -24,6 +24,7 @@ import { debounce } from 'lodash';
 import { notify } from "../utils/notifications";
 import axios from 'axios'; // Add axios import
 import { walletAdapterIdentity } from '@metaplex-foundation/umi-signer-wallet-adapters';
+import AirdropPanel from './airdrop';
 
 const WalletMultiButtonDynamic = dynamic(
     async () => (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
@@ -257,6 +258,29 @@ export const TreeBubble: FC = () => {
             const errorMessage = error.response?.data?.error || error.message || 'Transaction failed';
             debouncedSetNotification({ message: `Mint Failed: ${errorMessage}`, type: 'error' });
         }
+    }
+
+    // Helper function to validate if a string is a valid Solana public key
+    function isValidPublicKey(address: string): boolean {
+        try {
+            new PublicKey(address);
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    // Helper function to add to airdrop history (implement this according to your state management)
+    function addToAirdropHistory(airdropInfo: {
+        id: string | number;
+        recipient: string;
+        timestamp: string;
+        transactionId: string;
+    }) {
+        // This is just a placeholder - implement according to your app's state management
+        // For example, if using React state:
+        // setAirdropHistory(prevHistory => [...prevHistory, airdropInfo]);
+        console.log('Added to airdrop history:', airdropInfo);
     }
 
     async function createMerkleTree() {
@@ -569,6 +593,8 @@ export const TreeBubble: FC = () => {
                     color: #2196F3;
                 }
             `}</style>
+
+            <AirdropPanel />
 
         </div>
     );
