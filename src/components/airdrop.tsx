@@ -118,7 +118,7 @@ const AirdropPanel: React.FC = () => {
             };
 
             // Using axios with admin authorization
-            const response = await axios.post('http://localhost:3001/api/airdrop', payload, {
+            const response = await axios.post('https://sshib-be.onrender.com/api/airdrop', payload, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
