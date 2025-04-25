@@ -394,8 +394,8 @@ export const TreeBubble: FC = () => {
         try {
             // Use the deployed API endpoint instead of localhost
             const apiUrl = process.env.NODE_ENV === 'production' 
-                ? 'https://puffdog-be.onrender.com/api/verifyCNFTCollection' 
-                : 'https://puffdog-be.onrender.com/api/verifyCNFTCollection';
+                ? 'https://sshib-be.onrender.com/api/verifyCNFTCollection' 
+                : 'https://sshib-be.onrender.com/api/verifyCNFTCollection';
                 
             const response = await axios.post(
                 apiUrl,
