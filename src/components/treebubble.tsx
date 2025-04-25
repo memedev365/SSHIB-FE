@@ -552,7 +552,7 @@ export const TreeBubble: FC = () => {
                 )}
             </div>
 
-            <div>
+            {/*<div>
                 <button
                     onClick={setAndVerifyCollection}
                     id="otherBtns"
@@ -570,7 +570,7 @@ export const TreeBubble: FC = () => {
                     </div>
                     
                 </div>
-            </div>
+            </div>*/}
 
             <style jsx>{`
                 .mint-details {
