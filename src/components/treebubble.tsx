@@ -399,7 +399,7 @@ export const TreeBubble: FC = () => {
                 
             const response = await axios.post(
                 apiUrl,
-                {leafIndex: 3},
+                {leafIndex: 1},
                 {
                     headers: {
                         'Content-Type': 'application/json',
