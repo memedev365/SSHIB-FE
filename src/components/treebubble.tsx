@@ -131,138 +131,144 @@ export const TreeBubble: FC = () => {
 
     // Minting function
     async function mintWithSolPayment() {
-        // Clear previous minted NFT
-        setLastMintedNft(null);
-        let loaderNotificationId: string | undefined;
+    // Clear previous minted NFT
+    setLastMintedNft(null);
+    let loaderNotificationId: string | undefined;
 
-        try {
-            console.log('[1/6] Starting mint process...');
+    try {
+        console.log('[1/6] Starting mint process...');
 
-            // 1. Validate wallet connection
-            if (!wallet.publicKey || !wallet.signTransaction) {
-                console.error('Wallet not connected!');
-                notify({ type: 'error', message: 'Wallet not connected!' });
-                return;
-            }
-
-            // 2. Check mint limits
-            console.log('[2/6] Checking mint limits...');
-            if (totalMinted >= Number(MAX_SUPPLY)) {
-                console.error('Max supply reached');
-                notify({ type: 'error', message: 'All NFTs minted!' });
-                return;
-            }
-
-            // 3. Check existing mints by this wallet
-            console.log('[3/6] Checking existing mints...');
-            const assets = await umi.rpc.getAssetsByOwner({
-                owner: publicKey(wallet.publicKey.toString()),
-                sortBy: { sortBy: 'created', sortDirection: 'desc' },
-            });
-
-            const mintedCount = assets.items.filter(asset =>
-                asset.compression.compressed &&
-                asset.compression.tree === merkleTreeLink.toString() &&
-                asset.grouping.some(g => g.group_value === tokenAddress.toString())
-            ).length;
-
-            console.log(`User has minted ${mintedCount}/10 NFTs`);
-            if (mintedCount >= 10000) {
-                console.error('Mint limit reached for wallet');
-                notify({ type: 'error', message: 'You can only mint 10 NFTs per wallet!' });
-                return;
-            }
-
-            // 4. Process payment
-            console.log('[4/6] Processing payment...');
-            debouncedSetNotification({ message: 'Processing payment...', type: 'info' });
-
-            const adminWallet = new PublicKey(adminWalletAddress);
-            const transferInstruction = SystemProgram.transfer({
-                fromPubkey: wallet.publicKey,
-                toPubkey: adminWallet,
-                lamports: LAMPORTS_PER_SOL * Number(perNFTPrice)
-            });
-
-            const priorityFeeInstruction = ComputeBudgetProgram.setComputeUnitPrice({
-                microLamports: 100000
-            });
-
-            let transaction = new Transaction()
-                .add(priorityFeeInstruction)
-                .add(transferInstruction);
-
-            const { blockhash } = await connection.getLatestBlockhash();
-            transaction.recentBlockhash = blockhash;
-            transaction.feePayer = wallet.publicKey;
-
-            console.log('Sending transaction...');
-            const signature = await wallet.sendTransaction(transaction, connection);
-            const txid = signature.toString();
-            console.log(`Payment TXID: ${txid}`);
-
-            debouncedSetNotification({ message: 'Processing payment...', type: 'info' });
-
-            // Wait for payment confirmation
-            console.log('Waiting for payment confirmation...');
-            await connection.confirmTransaction(signature, 'confirmed');
-            console.log('Payment confirmed on-chain');
-
-            // 5. Call backend API to mint NFT - Keep loader visible
-            console.log('[5/6] Calling backend mint API...');
-            debouncedSetNotification({ message: 'Minting NFT...', type: 'info' });
-
-            // Create payload object
-            const payload = {
-                userWallet: wallet.publicKey.toString(),
-                paymentSignature: signature
-            };
-
-            // Using axios instead of fetch
-            const response = await axios.post('https://sshib-be.onrender.com/api/mint', payload, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                //  timeout: 25000 // 25 seconds timeout
-            });
-
-            // Access data directly from axios response
-            const _response = response.data;
-            const nftId = _response.nftId;
-            const imageUrl = _response.imageUrl;
-            const name = _response.name;
-
-            console.log("_response : " + JSON.stringify(_response));
-
-            console.log(`Minted NFT: ${name} (${nftId})`);
-            debouncedSetNotification({ message: `Minted ${name} (${nftId})!`, type: 'success' });
-
-            await new Promise(resolve => setTimeout(resolve, 2000));
-
-            const mintTxid = _response.details.paymentVerification.transactionId;
-
-            // Update UI with minted NFT
-            console.log('[6/6] Updating UI...');
-            setLastMintedNft({ id: nftId, imageUrl, name });
-            setLastMintedNftId(nftId);
-            await fetchMintCount(); // Refresh mint count
-
-            console.log('Mint process completed successfully');
-
-        } catch (error: any) {
-            console.error('Minting error:', error);
-
-            if (error.message?.includes('User rejected') || error.message?.includes('rejected')) {
-                console.log('User rejected transaction');
-                return;
-            }
-
-            // For axios errors, the error details are structured differently
-            const errorMessage = error.response?.data?.error || error.message || 'Transaction failed';
-            debouncedSetNotification({ message: `Mint Failed: ${errorMessage}`, type: 'error' });
+        // 1. Validate wallet connection
+        if (!wallet.publicKey || !wallet.signTransaction) {
+            console.error('Wallet not connected!');
+            notify({ type: 'error', message: 'Wallet not connected!' });
+            return;
         }
+
+        // 2. Check mint limits
+        console.log('[2/6] Checking mint limits...');
+        if (totalMinted >= Number(MAX_SUPPLY)) {
+            console.error('Max supply reached');
+            notify({ type: 'error', message: 'All NFTs minted!' });
+            return;
+        }
+
+        // 3. Check existing mints by this wallet
+        console.log('[3/6] Checking existing mints...');
+        const assets = await umi.rpc.getAssetsByOwner({
+            owner: publicKey(wallet.publicKey.toString()),
+            sortBy: { sortBy: 'created', sortDirection: 'desc' },
+        });
+
+        const mintedCount = assets.items.filter(asset =>
+            asset.compression.compressed &&
+            asset.compression.tree === merkleTreeLink.toString() &&
+            asset.grouping.some(g => g.group_value === tokenAddress.toString())
+        ).length;
+
+        console.log(`User has minted ${mintedCount}/10 NFTs`);
+        if (mintedCount >= 10000) {
+            console.error('Mint limit reached for wallet');
+            notify({ type: 'error', message: 'You can only mint 10 NFTs per wallet!' });
+            return;
+        }
+
+        // 4. Process payment
+        console.log('[4/6] Processing payment...');
+        debouncedSetNotification({ message: 'Processing payment...', type: 'info' });
+
+        const adminWallet = new PublicKey(adminWalletAddress);
+        const transferInstruction = SystemProgram.transfer({
+            fromPubkey: wallet.publicKey,
+            toPubkey: adminWallet,
+            lamports: LAMPORTS_PER_SOL * Number(perNFTPrice)
+        });
+
+        const priorityFeeInstruction = ComputeBudgetProgram.setComputeUnitPrice({
+            microLamports: 100000
+        });
+
+        // Create transaction
+        let transaction = new Transaction()
+            .add(priorityFeeInstruction)
+            .add(transferInstruction);
+
+        const { blockhash } = await connection.getLatestBlockhash();
+        transaction.recentBlockhash = blockhash;
+        transaction.feePayer = wallet.publicKey;
+
+        // *** CHANGED PART - BEGIN ***
+        // This is the key change requested by Phantom support:
+        // Separate signing from sending the transaction
+        console.log('Signing transaction...');
+        const signedTransaction = await wallet.signTransaction(transaction);
+        
+        console.log('Sending signed transaction...');
+        const signature = await connection.sendRawTransaction(signedTransaction.serialize());
+        // *** CHANGED PART - END ***
+        
+        const txid = signature.toString();
+        console.log(`Payment TXID: ${txid}`);
+
+        debouncedSetNotification({ message: 'Processing payment...', type: 'info' });
+
+        // Wait for payment confirmation
+        console.log('Waiting for payment confirmation...');
+        await connection.confirmTransaction(signature, 'confirmed');
+        console.log('Payment confirmed on-chain');
+
+        // 5. Call backend API to mint NFT - Keep loader visible
+        console.log('[5/6] Calling backend mint API...');
+        debouncedSetNotification({ message: 'Minting NFT...', type: 'info' });
+
+        // Rest of the function remains the same
+        const payload = {
+            userWallet: wallet.publicKey.toString(),
+            paymentSignature: signature
+        };
+
+        const response = await axios.post('https://sshib-be.onrender.com/api/mint', payload, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+        });
+
+        const _response = response.data;
+        const nftId = _response.nftId;
+        const imageUrl = _response.imageUrl;
+        const name = _response.name;
+
+        console.log("_response : " + JSON.stringify(_response));
+
+        console.log(`Minted NFT: ${name} (${nftId})`);
+        debouncedSetNotification({ message: `Minted ${name} (${nftId})!`, type: 'success' });
+
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        const mintTxid = _response.details.paymentVerification.transactionId;
+
+        // Update UI with minted NFT
+        console.log('[6/6] Updating UI...');
+        setLastMintedNft({ id: nftId, imageUrl, name });
+        setLastMintedNftId(nftId);
+        await fetchMintCount(); // Refresh mint count
+
+        console.log('Mint process completed successfully');
+
+    } catch (error: any) {
+        console.error('Minting error:', error);
+
+        if (error.message?.includes('User rejected') || error.message?.includes('rejected')) {
+            console.log('User rejected transaction');
+            return;
+        }
+
+        // For axios errors, the error details are structured differently
+        const errorMessage = error.response?.data?.error || error.message || 'Transaction failed';
+        debouncedSetNotification({ message: `Mint Failed: ${errorMessage}`, type: 'error' });
     }
+}
 
     // Helper function to validate if a string is a valid Solana public key
     function isValidPublicKey(address: string): boolean {
