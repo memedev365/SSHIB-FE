@@ -167,7 +167,7 @@ export const TreeBubble: FC = () => {
         ).length;
 
         console.log(`User has minted ${mintedCount}/10 NFTs`);
-        if (mintedCount >= 10000) {
+        if (mintedCount >= 10) {  // Changed from 10000 to 10 based on your comment about 10 NFTs per wallet
             console.error('Mint limit reached for wallet');
             notify({ type: 'error', message: 'You can only mint 10 NFTs per wallet!' });
             return;
@@ -197,16 +197,13 @@ export const TreeBubble: FC = () => {
         transaction.recentBlockhash = blockhash;
         transaction.feePayer = wallet.publicKey;
 
-        // *** CHANGED PART - BEGIN ***
-        // This is the key change requested by Phantom support:
-        // Separate signing from sending the transaction
+        // Separate signing from sending
         console.log('Signing transaction...');
         const signedTransaction = await wallet.signTransaction(transaction);
-        
+
         console.log('Sending signed transaction...');
         const signature = await connection.sendRawTransaction(signedTransaction.serialize());
-        // *** CHANGED PART - END ***
-        
+
         const txid = signature.toString();
         console.log(`Payment TXID: ${txid}`);
 
@@ -217,36 +214,44 @@ export const TreeBubble: FC = () => {
         await connection.confirmTransaction(signature, 'confirmed');
         console.log('Payment confirmed on-chain');
 
-        // 5. Call backend API to mint NFT - Keep loader visible
+        // 5. Call backend API to mint NFT
         console.log('[5/6] Calling backend mint API...');
         debouncedSetNotification({ message: 'Minting NFT...', type: 'info' });
 
-        // Rest of the function remains the same
+        // Prepare the payload as expected by the backend
         const payload = {
             userWallet: wallet.publicKey.toString(),
             paymentSignature: signature
         };
 
-        const response = await axios.post('https://sshib-be.onrender.com/api/mint', payload, {
+        // Verify the backend URL is correct - adjust if needed
+        const apiUrl = 'https://sshib-be.onrender.com/api/mint';
+        console.log(`Calling API: ${apiUrl} with payload:`, payload);
+
+        const response = await axios.post(apiUrl, payload, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
         });
 
-        const _response = response.data;
-        const nftId = _response.nftId;
-        const imageUrl = _response.imageUrl;
-        const name = _response.name;
+        // Check if response has the expected structure
+        const responseData = response.data;
+        console.log("Response data:", responseData);
 
-        console.log("_response : " + JSON.stringify(_response));
+        if (!responseData.success) {
+            throw new Error(responseData.error || 'Mint failed with unknown error');
+        }
+
+        const nftId = responseData.nftId;
+        const imageUrl = responseData.imageUrl;
+        const name = responseData.name;
+        const mintTxid = responseData.details.paymentVerification.transactionId;
 
         console.log(`Minted NFT: ${name} (${nftId})`);
-        debouncedSetNotification({ message: `Minted ${name} (${nftId})!`, type: 'success' });
+        debouncedSetNotification({ message: `Minted ${name}!`, type: 'success' });
 
         await new Promise(resolve => setTimeout(resolve, 2000));
-
-        const mintTxid = _response.details.paymentVerification.transactionId;
 
         // Update UI with minted NFT
         console.log('[6/6] Updating UI...');
@@ -261,11 +266,34 @@ export const TreeBubble: FC = () => {
 
         if (error.message?.includes('User rejected') || error.message?.includes('rejected')) {
             console.log('User rejected transaction');
+            debouncedSetNotification({ message: 'Transaction rejected by user', type: 'info' });
             return;
         }
 
-        // For axios errors, the error details are structured differently
-        const errorMessage = error.response?.data?.error || error.message || 'Transaction failed';
+        // Enhanced error handling
+        let errorMessage = 'Mint failed with unknown error';
+        
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.error('Error response:', {
+                data: error.response.data,
+                status: error.response.status,
+                headers: error.response.headers
+            });
+            
+            errorMessage = error.response.data?.error?.message || 
+                           error.response.data?.error || 
+                           `Server error: ${error.response.status}`;
+        } else if (error.request) {
+            // The request was made but no response was received
+            console.error('Error request:', error.request);
+            errorMessage = 'No response from server. Please check your connection.';
+        } else {
+            // Something happened in setting up the request that triggered an Error
+            errorMessage = error.message;
+        }
+
         debouncedSetNotification({ message: `Mint Failed: ${errorMessage}`, type: 'error' });
     }
 }
