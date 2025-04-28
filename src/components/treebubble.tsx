@@ -529,7 +529,7 @@ export const TreeBubble: FC = () => {
                             </div>
                         )}
                         <a
-                            href={`https://solana.fm/address/${lastMintedNft.id}/transactions?cluster=mainnet-alpha`}
+                            href={`https://explorer.solana.com/address/${lastMintedNft.id}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{ textDecoration: 'none' }}
