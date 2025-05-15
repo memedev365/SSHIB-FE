@@ -32,9 +32,8 @@ export const HomeView: FC = ({ }) => {
     <div className="main-container font-quicksand">
     <h1 className="main-title">
         <span className="title-line" id="colorH">MINT YOUR SUPER SHIBA INU (SSHIB) NFT BEFORE THEY’RE GONE
-          Rare NFTs. Real Rewards. Limited Supply.
         </span>
-        {/*<span className="title-line" id="colorH2">START WINNING!</span>*/}
+        <span className="title-line" id="colorH2">Rare NFTs. Real Rewards. Limited Supply.</span>
       </h1>
 
       <p className="subtitle">
