@@ -30,13 +30,15 @@ export const HomeView: FC = ({ }) => {
 
   return (
     <div className="main-container font-quicksand">
-      <h1 className="main-title">
-        <span className="title-line" id="colorH">MINT YOUR SUPER SHIBA INU DOG TODAY</span>
-        <span className="title-line" id="colorH2">START WINNING!</span>
+    <h1 className="main-title">
+        <span className="title-line" id="colorH">MINT YOUR SUPER SHIBA INU (SSHIB) NFT BEFORE THEY’RE GONE
+          Rare NFTs. Real Rewards. Limited Supply.
+        </span>
+        {/*<span className="title-line" id="colorH2">START WINNING!</span>*/}
       </h1>
 
       <p className="subtitle">
-        Don't wait—these rare NFTs won't last forever. Grab yours now, lock in your rewards, and let the good vibes roll!
+        Minting may take a moment — hang tight while the blockchain does its thing. These rare NFTs won’t last long, so claim yours now!
       </p>
 
       <TreeBubble />
