@@ -508,49 +508,6 @@ const AirdropPanel: React.FC = () => {
                         </div>
                     )}
 
-                    {airdropHistory.length > 0 && (
-                        <div className="mt-8">
-                            <h3 className="text-lg font-semibold mb-2 text-black">Recent SSHIB Airdrops ({airdropHistory.length})</h3>
-                            <div className="bg-white border rounded-md overflow-hidden max-h-96 overflow-y-auto">
-                                <table className="min-w-full divide-y divide-gray-200">
-                                    <thead className="bg-gray-50 sticky top-0">
-                                        <tr>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NFT</th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Recipient</th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="bg-white divide-y divide-gray-200">
-                                        {airdropHistory.map((item, index) => (
-                                            <tr key={index} className="hover:bg-gray-50">
-                                                <td className="px-6 py-4 whitespace-nowrap">
-                                                    <div className="flex items-center">
-                                                        {item.imageUrl && (
-                                                            <div className="flex-shrink-0 h-8 w-8 mr-2">
-                                                                <img className="h-8 w-8 rounded-md object-cover" src={item.imageUrl} alt="" />
-                                                            </div>
-                                                        )}
-                                                        <span className='text-black text-sm'>{item.name || `SSHIB #${item.id}`}</span>
-                                                    </div>
-                                                </td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    {item.id}
-                                                </td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    {`${item.recipient.slice(0, 6)}...${item.recipient.slice(-4)}`}
-                                                </td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    {new Date(item.timestamp).toLocaleTimeString()}
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    )}
-
                     <div className="grid grid-cols-1 gap-4 mb-6">
                         <div>
                             <label htmlFor="recipient-wallets" className="block text-sm font-medium mb-1 text-black">
