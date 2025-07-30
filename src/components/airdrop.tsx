@@ -508,7 +508,7 @@ const AirdropPanel: React.FC = () => {
                         </div>
                     )}
 
-                    <div className="grid grid-cols-1 gap-4 mb-6">
+                    <div className="grid grid-cols-1 gap-4 mb-6 mt-6">
                         <div>
                             <label htmlFor="recipient-wallets" className="block text-sm font-medium mb-1 text-black">
                                 Recipient Wallet Addresses ({parsedRecipients.length} addresses)
